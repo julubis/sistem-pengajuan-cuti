@@ -76,9 +76,9 @@ END`
 
 ### Membuat field link sheet
 `CASE
-  WHEN Status 1 IS NULL AND Status 2 IS NULL AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=O", ID), "Sheet")
-  WHEN Status 1 = 'Terverifikasi' AND Status 2 IS NULL AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=P", ID), "Sheet")
-  WHEN Status 1 = 'Terverifikasi' AND Status 2 = 'Terverifikasi' AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=Q", ID), "Sheet")
+  WHEN Tahap = 'Tahap 1' THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=O", ID), "Sheet")
+  WHEN Tahap = 'Tahap 2' THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=P", ID), "Sheet")
+  WHEN Tahap = 'Tahap 3' THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=Q", ID), "Sheet")
   ELSE '-'
 END`
-> URL Google Sheet
+> URL Google Sheet di Sheet Form Response
