@@ -75,5 +75,10 @@ END`
 > URL web dari Google Apps Script yang sudah di deploy
 
 ### Membuat field link sheet
-`HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=Q", ID), "Sheet")`
+`CASE
+  WHEN Status 1 IS NULL AND Status 2 IS NULL AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=O", ID), "Sheet")
+  WHEN Status 1 = 'Terverifikasi' AND Status 2 IS NULL AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=P", ID), "Sheet")
+  WHEN Status 1 = 'Terverifikasi' AND Status 2 = 'Terverifikasi' AND Status 3 IS NULL THEN HYPERLINK(CONCAT("URL_GOOGLE_SHEET", "&range=Q", ID), "Sheet")
+  ELSE '-'
+END`
 > URL Google Sheet
