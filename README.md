@@ -24,3 +24,7 @@ END`
 > - Jika hanya status 1 dan 2 yang oke, maka statusnya **Terverifikasi 2**
 > - Jika hanya status 1 yang oke, maka statusnya **Terverifikasi 1**
 > - Jika status 1, 2, dan 3 kosong, maka statusnya **Menunggu persetujuan**
+
+### Membuat field link download
+`HYPERLINK(CONCAT("URL_WEB_APP_SCRIPT", "?ts=", Timestamp, "&name=", Nama), "Download")`
+> URL web dari Google Apps Script yang sudah di deploy
