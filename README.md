@@ -40,6 +40,9 @@
 > - Kolom G2 = Sisa cuti N1
 > - Kolom H2 = Sisa cuti N
 
+### Mendapatkan nilai yang sama dari sheet lain
+`=XLOOKUP("KATA_KUNCI"; 'NamaSheet'!A:A; 'NamaSheet'!E:E)`
+
 ## Formula Looker Studio
 
 ### Membuat field status
