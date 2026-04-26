@@ -37,7 +37,10 @@ const CONFIG = {
     JENIS_CUTI: 8,
     MULAI_CUTI: 9,
     SELESAI_CUTI: 10,
-    ALASAN: 12
+    ALASAN: 12,
+    STATUS_1: 14,
+    STATUS_2: 15,
+    STATUS_3: 16,
   },
 
   // Indeks Kolom pada Data Karyawan
@@ -53,6 +56,7 @@ const CONFIG = {
     JABATAN: 'B20',
     UNIT_KERJA: 'B21',
     NIP: 'F19',
+    NIP_BAWAH: 'G46',
     ALASAN_ATAS: 'A29',
     ALASAN_BAWAH: 'A44',
     MULAI_CUTI: 'F32',
@@ -109,10 +113,13 @@ function doGet(e) {
     if (pLastRow < 2) return buildHtmlUI("Data pengajuan kosong.", "error");
 
     const dataPengajuan = pengajuan.getRange(2, 1, pLastRow - 1, 18).getValues();
-    const pengajuanUser = dataPengajuan.find(row => {
-      const rowTime = Utilities.formatDate(row[idx.TIMESTAMP], tz, 'yyyy-MM-dd HH:mm:ss');
-      return rowTime === timestamp && row[idx.NAMA].toString().trim() === name.trim();
-    });
+    const pengajuanUser = dataPengajuan.find(row => 
+      Utilities.formatDate(row[idx.TIMESTAMP], tz, 'yyyy-MM-dd HH:mm:ss') === timestamp && 
+      row[idx.NAMA].toString().trim() === name.trim() &&
+      row[idx.STATUS_1].toString().trim() === 'Terverifikasi' &&
+      row[idx.STATUS_2].toString().trim() === 'Terverifikasi' &&
+      row[idx.STATUS_3].toString().trim() === 'ACC'
+    );
 
     if (!pengajuanUser) {
       const msg = `Pengajuan Cuti tidak ditemukan atau belum disetujui.<br><br>
@@ -151,9 +158,10 @@ function doGet(e) {
       templateCopy.getRange(cells.JABATAN).setValue(': ' + pengajuanUser[idx.JABATAN].toString());
       templateCopy.getRange(cells.UNIT_KERJA).setValue(': ' + pengajuanUser[idx.UNIT_KERJA].toString());
       templateCopy.getRange(cells.NIP).setValue(': ' + pengajuanUser[idx.NIP].toString()); 
+      templateCopy.getRange(cells.NIP_BAWAH).setValue('NIP. ' + pengajuanUser[idx.NIP].toString()); 
       
       // Set Formula Masa Kerja
-      templateCopy.getRange(cells.MASA_KERJA).setValue(`=CONCAT(": "; DATEDIF("${tglMulaiKerjaStandard}"; TODAY(); "Y") & " Tahun " & DATEDIF("${tglMulaiKerjaStandard}"; TODAY(); "YM") & " Bulan")`);
+      // templateCopy.getRange(cells.MASA_KERJA).setValue(`=CONCAT(": "; DATEDIF("${tglMulaiKerjaStandard}"; TODAY(); "Y") & " Tahun " & DATEDIF("${tglMulaiKerjaStandard}"; TODAY(); "YM") & " Bulan")`);
 
       // Set Checkbox Berdasarkan Jenis Cuti
       const jenisCuti = pengajuanUser[idx.JENIS_CUTI].toString().toLowerCase().trim();
