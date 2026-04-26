@@ -15,24 +15,30 @@
 
 ### Menghitung sisa cuti N2 (2 tahun sebelumnya)
 `=MAX(0; C2 - E2)`
-> Kolom C2 = Kuota sisa cuti N2
-> Kolom E2 = Jumlah cuti yang terpakai
+> - Kolom C2 = Kuota sisa cuti N2
+> - Kolom E2 = Jumlah cuti yang terpakai
 
 ### Menghitung sisa cuti N1 (1 tahun sebelumnya)
 `=MAX(0; C2 + D2 - E2 - F2)`
-> Kolom C2 = Kuota sisa cuti N2
-> Kolom D2 = Kuota sisa cuti N1
-> Kolom E2 = Jumlah cuti yang terpakai
-> Kolom F2 = Sisa cuti N2
+> - Kolom C2 = Kuota sisa cuti N2
+> - Kolom D2 = Kuota sisa cuti N1
+> - Kolom E2 = Jumlah cuti yang terpakai
+> - Kolom F2 = Sisa cuti N2
 
 ### Menghitung sisa cuti N (Tahun ini)
 `=MAX(0; B2 + C2 + D2 - E2 - F2 - G2)`
-> Kolom B2 = Kouta cuti N
-> Kolom C2 = Kuota sisa cuti N2
-> Kolom D2 = Kuota sisa cuti N1
-> Kolom E2 = Jumlah cuti yang terpakai
-> Kolom F2 = Sisa cuti N2
-> Kolom G2 = Sisa cuti N1
+> - Kolom B2 = Kouta cuti N
+> - Kolom C2 = Kuota sisa cuti N2
+> - Kolom D2 = Kuota sisa cuti N1
+> - Kolom E2 = Jumlah cuti yang terpakai
+> - Kolom F2 = Sisa cuti N2
+> - Kolom G2 = Sisa cuti N1
+
+### Menghitung total sisa cuti
+`=SUM(F2 + G2 + H2)`
+> - Kolom F2 = Sisa cuti N2
+> - Kolom G2 = Sisa cuti N1
+> - Kolom H2 = Sisa cuti N
 
 ## Formula Looker Studio
 
